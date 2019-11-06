@@ -99,6 +99,14 @@ tourScema.post(/^find/g, function(docs, next) {
   next();
 });
 
+//AGGREGATION MIDDLEWARE
+
+tourScema.pre('aggregate', function(next) {
+  this.pipeline().unshift({ $match: { secretTour: { $ne: true } } });
+  console.log(this.pipeline());
+  next();
+});
+
 const Tour = mongoose.model('Tour', tourScema);
 
 module.exports = Tour;
