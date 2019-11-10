@@ -5,16 +5,14 @@ const {
   createTour,
   updateTour,
   deleteTour,
-  // checkID,
-  // checkBody
   aliasTopTours,
   getTourStats,
   getMonthlyPlan
 } = require('./../conrollers/tourController');
 
-const router = express.Router();
+const { protect } = require('./../conrollers/authController');
 
-// router.param('id', checkID);
+const router = express.Router();
 
 router.route('/top-5-cheap').get(aliasTopTours, getAllTours);
 router.route('/tour-stats').get(getTourStats);
@@ -22,7 +20,7 @@ router.route('/monthly-plan/:year').get(getMonthlyPlan);
 
 router
   .route('/')
-  .get(getAllTours)
+  .get(protect, getAllTours)
   .post(createTour);
 
 router
