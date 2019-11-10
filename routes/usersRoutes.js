@@ -7,11 +7,12 @@ const {
   deleteUser
 } = require('./../conrollers/usersController');
 
-const { signup } = require('./../conrollers/authController');
+const { signup, login } = require('./../conrollers/authController');
 
 const router = express.Router();
 
 router.post('/signup', signup);
+router.post('/login', login);
 
 router
   .route('/')
