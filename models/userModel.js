@@ -68,7 +68,7 @@ userScema.pre('save', function(next) {
   next();
 });
 userScema.pre(/^find/, function(next) {
-  //this points to the current query
+  ////this points to the current query
   this.find({ active: { $ne: false } });
   next();
 });
