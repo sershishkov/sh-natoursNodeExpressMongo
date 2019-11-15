@@ -76,7 +76,31 @@ const tourScema = new mongoose.Schema(
     secretTour: {
       type: Boolean,
       default: false
-    }
+    },
+    startLocation: {
+      //GeoJSON
+      type: {
+        type: String,
+        default: 'Point',
+        enum: ['Point']
+      },
+      coordinates: [Number],
+      address: String,
+      description: String
+    },
+    locations: [
+      {
+        type: {
+          type: String,
+          default: 'Point',
+          enum: ['Point']
+        },
+        coordinates: [Number],
+        address: String,
+        description: String,
+        day: Number
+      }
+    ]
   },
   {
     toJSON: { virtuals: true },
@@ -87,21 +111,11 @@ const tourScema = new mongoose.Schema(
 tourScema.virtual('durationWeeks').get(function() {
   return this.duration / 7;
 });
-//DOCUMENT MIDDLEWARE: runs before .save() and .create()
+//DOCUMENT MIDDLEWARE: runs before .save() and .create() only
 tourScema.pre('save', function(next) {
   this.slug = slugify(this.name, { lower: true });
   next();
 });
-
-// tourScema.pre('save', function(next) {
-//   console.log('Will save document');
-//   next();
-// });
-
-// tourScema.post('save', function(doc, next) {
-//   console.log(doc);
-//   next();
-// });
 
 //QUERY MIDDLEWARE
 // tourScema.pre('find', function(next) {
