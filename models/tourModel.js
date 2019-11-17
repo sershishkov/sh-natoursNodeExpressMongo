@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const slugify = require('slugify');
-const User = require('./userModel');
+// const User = require('./userModel');
 
 const tourScema = new mongoose.Schema(
   {
@@ -102,7 +102,12 @@ const tourScema = new mongoose.Schema(
         day: Number
       }
     ],
-    guides: Array
+    guides: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: 'User'
+      }
+    ]
   },
   {
     toJSON: { virtuals: true },
@@ -119,11 +124,11 @@ tourScema.pre('save', function(next) {
   next();
 });
 
-tourScema.pre('save', async function(next) {
-  const guidesPromises = this.guides.map(async id => await User.findById(id));
-  this.guides = await Promise.all(guidesPromises);
-  next();
-});
+// tourScema.pre('save', async function(next) {
+//   const guidesPromises = this.guides.map(async id => await User.findById(id));
+//   this.guides = await Promise.all(guidesPromises);
+//   next();
+// });
 
 //QUERY MIDDLEWARE
 // tourScema.pre('find', function(next) {
