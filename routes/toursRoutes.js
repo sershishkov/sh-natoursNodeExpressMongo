@@ -11,6 +11,7 @@ const {
 } = require('./../conrollers/tourController');
 
 const { protect, restrictTo } = require('./../conrollers/authController');
+const { createReview } = require('./../conrollers/reviewController');
 
 const router = express.Router();
 
@@ -28,5 +29,9 @@ router
   .get(getTour)
   .patch(updateTour)
   .delete(protect, restrictTo('admin', 'lead-guide'), deleteTour);
+
+router
+  .route('/:tourId/reviews')
+  .post(protect, restrictTo('user'), createReview);
 
 module.exports = router;
