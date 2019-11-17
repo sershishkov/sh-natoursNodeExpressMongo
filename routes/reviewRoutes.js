@@ -10,7 +10,7 @@ const {
 
 const { protect, restrictTo } = require('./../conrollers/authController');
 
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
 
 router
   .route('/')
