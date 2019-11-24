@@ -1,11 +1,12 @@
 /* eslint-disable */
 import '@babel/polyfill';
 import { displayMap } from './mapbox';
-import { login } from './login';
+import { login, logout } from './login';
 
 //Dom Element
 const mapBox = document.getElementById('map');
 const loginForm = document.querySelector('.form');
+const logiOutBtn = document.querySelector('.nav__el--logout');
 
 //Values
 
@@ -20,7 +21,9 @@ if (loginForm) {
     e.preventDefault();
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-    console.log('EMAIL:', email);
+
     login(email, password);
   });
 }
+
+if (logiOutBtn) logiOutBtn.addEventListener('click', logout);
