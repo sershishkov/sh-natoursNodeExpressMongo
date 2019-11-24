@@ -16,6 +16,7 @@ const reviewRouter = require('./routes/reviewRoutes');
 const viewRouter = require('./routes/viewRoutes');
 
 const app = express();
+
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 // GLOBAL MIDDLEWARES
@@ -46,6 +47,11 @@ const limiter = rateLimit({
   windowMs: 60 * 60 * 1000,
   message: 'Too many requests from this IP, Please try again in an hour'
 });
+
+// app.use(function(req, res, next) {
+//   res.header('Access-Control-Allow-Origin', '*'); // update to match the domain you will make the request
+//   next();
+// });
 
 app.use('/api', limiter);
 //BODY parser - reading data from body into req.body
