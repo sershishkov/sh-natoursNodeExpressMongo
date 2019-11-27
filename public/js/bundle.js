@@ -11024,45 +11024,29 @@ if (loginForm) {
 }
 
 if (logiOutBtn) logiOutBtn.addEventListener('click', _login.logout);
+if (userDataForm) userDataForm.addEventListener('submit', function (e) {
+  e.preventDefault();
+  var form = new FormData();
+  form.append('name', document.getElementById('name').value);
+  form.append('email', document.getElementById('email').value);
+  form.append('photo', document.getElementById('photo').files[0]);
+  console.log(form);
+  (0, _updateSettings.updateSettings)(form, 'data');
+});
 
-if (userDataForm) {
-  userDataForm.addEventListener('submit', function _callee(e) {
-    var name, email;
+if (userPasswordForm) {
+  userPasswordForm.addEventListener('submit', function _callee(e) {
+    var passwordCurrent, password, passwordConfirm;
     return regeneratorRuntime.async(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
-          case 0:
-            e.preventDefault();
-            name = document.getElementById('name').value;
-            email = document.getElementById('email').value;
-            _context.next = 5;
-            return regeneratorRuntime.awrap((0, _updateSettings.updateSettings)({
-              name: name,
-              email: email
-            }, 'data'));
-
-          case 5:
-          case "end":
-            return _context.stop();
-        }
-      }
-    });
-  });
-}
-
-if (userPasswordForm) {
-  userPasswordForm.addEventListener('submit', function _callee2(e) {
-    var passwordCurrent, password, passwordConfirm;
-    return regeneratorRuntime.async(function _callee2$(_context2) {
-      while (1) {
-        switch (_context2.prev = _context2.next) {
           case 0:
             e.preventDefault();
             document.querySelector('.btn--save-password').textContent = 'Updating...';
             passwordCurrent = document.getElementById('password-current').value;
             password = document.getElementById('password').value;
             passwordConfirm = document.getElementById('password-confirm').value;
-            _context2.next = 7;
+            _context.next = 7;
             return regeneratorRuntime.awrap((0, _updateSettings.updateSettings)({
               passwordCurrent: passwordCurrent,
               password: password,
@@ -11077,7 +11061,7 @@ if (userPasswordForm) {
 
           case 11:
           case "end":
-            return _context2.stop();
+            return _context.stop();
         }
       }
     });
@@ -11111,7 +11095,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "43481" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45757" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
