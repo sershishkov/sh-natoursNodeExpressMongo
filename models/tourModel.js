@@ -160,11 +160,11 @@ tourScema.pre(/^find/, function(next) {
   next();
 });
 
-tourScema.post(/^find/g, function(docs, next) {
-  console.log(`Query took ${Date.now() - this.start} milliseconds`);
-  // console.log(docs);
-  next();
-});
+// tourScema.post(/^find/g, function(docs, next) {
+//   console.log(`Query took ${Date.now() - this.start} milliseconds`);
+//   console.log(docs);
+//   next();
+// });
 
 //AGGREGATION MIDDLEWARE
 

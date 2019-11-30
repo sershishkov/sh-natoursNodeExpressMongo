@@ -18,7 +18,9 @@ mongoose
     useFindAndModify: false,
     useUnifiedTopology: true
   })
-  .then(() => console.log('DB connection successful!'));
+  .then(() => {
+    console.log('DB connection successful!');
+  });
 
 const tours = JSON.parse(fs.readFileSync(`${__dirname}/tours.json`, 'utf-8'));
 const users = JSON.parse(fs.readFileSync(`${__dirname}/users.json`, 'utf-8'));
@@ -33,9 +35,9 @@ const importData = async () => {
     await User.create(users, { validateBeforeSave: false });
     await Review.create(reviews);
 
-    console.log('Data successfuly loaded');
+    // console.log('Data successfuly loaded');
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
   process.exit();
 };
@@ -47,9 +49,9 @@ const deleteData = async () => {
     await Tour.deleteMany();
     await User.deleteMany();
     await Review.deleteMany();
-    console.log('Data successfuly deleted');
+    // console.log('Data successfuly deleted');
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
   process.exit();
 };
